@@ -196,6 +196,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AttractionController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ParkController.cs" />
@@ -272,6 +273,11 @@
     <Content Include="Views\Park\Edit.cshtml" />
     <Content Include="Views\Park\Delete.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\DateTimeOffset.cshtml" />
+    <Content Include="Views\Attraction\Index.cshtml" />
+    <Content Include="Views\Attraction\Details.cshtml" />
+    <Content Include="Views\Attraction\Edit.cshtml" />
+    <Content Include="Views\Attraction\Delete.cshtml" />
+    <Content Include="Views\Attraction\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -53,6 +53,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AttractionCreate.cs" />
+    <Compile Include="AttractionDetail.cs" />
+    <Compile Include="AttractionEdit.cs" />
+    <Compile Include="AttractionListItem.cs" />
     <Compile Include="ParkCreate.cs" />
     <Compile Include="ParkDetail.cs" />
     <Compile Include="ParkEdit.cs" />
@@ -62,6 +66,12 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AmusementParkExplorer.Data\AmusementParkExplorer.Data.csproj">
+      <Project>{D5F829E7-EC0D-4E32-9628-6F5B97B1E726}</Project>
+      <Name>AmusementParkExplorer.Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
