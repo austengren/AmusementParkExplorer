@@ -6,6 +6,7 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
 using AmusementParkExplorer.WebMVC.Models;
+using AmusementParkExplorer.Data;
 
 namespace AmusementParkExplorer.WebMVC
 {

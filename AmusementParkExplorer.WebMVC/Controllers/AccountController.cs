@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using AmusementParkExplorer.WebMVC.Models;
+using AmusementParkExplorer.Data;
 
 namespace AmusementParkExplorer.WebMVC.Controllers
 {
