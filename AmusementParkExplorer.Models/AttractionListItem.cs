@@ -15,9 +15,6 @@ namespace AmusementParkExplorer.Models
         [Display(Name = "Park ID")]
         public int ParkID { get; set; }
 
-        [Display(Name = "Park Name")]
-        public string ParkName { get; set; }
-
         [Display(Name = "Attraction Name")]
         public string AttractionName { get; set; }
 
