@@ -43,9 +43,9 @@ namespace AmusementParkExplorer.WebMVC.Controllers
 
             if (service.CreateAttraction(model))
             {
-                TempData["SaveResult"] = "Your attraction was created.";
+                TempData["SaveResult"] = "Your Attraction was created.";
                 return RedirectToAction("Index");
-            }
+            };
 
             ViewBag.ParkID = new SelectList(db.Parks, "ParkID", "ParkName");
 
@@ -53,22 +53,6 @@ namespace AmusementParkExplorer.WebMVC.Controllers
 
             return View(model);
         }
-
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Create([Bind(Include = "AttractionID,ParkID")] Attraction attraction)
-        //{
-
-        //    if (ModelState.IsValid)
-        //    {
-        //        db.Attractions.Add(attraction);
-        //        db.SaveChanges();
-        //        return RedirectToAction("Index");
-        //    }
-
-        //    ViewBag.ParkID = new SelectList(db.Parks, "ParkID", "ParkName");
-        //    return View(attraction);
-        //}
 
         public ActionResult Edit(int id)
         {

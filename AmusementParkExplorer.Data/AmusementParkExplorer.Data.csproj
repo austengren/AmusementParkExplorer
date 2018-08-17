@@ -56,9 +56,13 @@
     <Compile Include="Attraction.cs" />
     <Compile Include="FoodDrink.cs" />
     <Compile Include="IdentityModels.cs" />
-    <Compile Include="Migrations\201808162057331_initial.cs" />
-    <Compile Include="Migrations\201808162057331_initial.Designer.cs">
-      <DependentUpon>201808162057331_initial.cs</DependentUpon>
+    <Compile Include="Migrations\201808171430300_InitialCreate.cs" />
+    <Compile Include="Migrations\201808171430300_InitialCreate.Designer.cs">
+      <DependentUpon>201808171430300_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808171542427_updatedattractiontable.cs" />
+    <Compile Include="Migrations\201808171542427_updatedattractiontable.Designer.cs">
+      <DependentUpon>201808171542427_updatedattractiontable.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Park.cs" />
@@ -69,8 +73,11 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201808162057331_initial.resx">
-      <DependentUpon>201808162057331_initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201808171430300_InitialCreate.resx">
+      <DependentUpon>201808171430300_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808171542427_updatedattractiontable.resx">
+      <DependentUpon>201808171542427_updatedattractiontable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -14,7 +14,6 @@ namespace AmusementParkExplorer.Data
 
         [Required]
         public int ParkID { get; set; }
-        public virtual Park Park { get; set; }
 
         [Required]
         public Guid OwnerID { get; set; }

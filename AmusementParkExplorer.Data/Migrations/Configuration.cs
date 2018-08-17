@@ -10,6 +10,7 @@ namespace AmusementParkExplorer.Data.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
+            ContextKey = "AmusementParkExplorer.Data.ApplicationDbContext";
         }
 
         protected override void Seed(AmusementParkExplorer.Data.ApplicationDbContext context)

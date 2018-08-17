@@ -2,6 +2,7 @@
 using AmusementParkExplorer.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -78,6 +79,7 @@ namespace AmusementParkExplorer.Services
                     ctx
                         .Attractions
                         .Where(e => e.OwnerID == _userID)
+                        .Include(e => e.ParkID)
                         .Select(
                             e =>
                                new AttractionListItem
