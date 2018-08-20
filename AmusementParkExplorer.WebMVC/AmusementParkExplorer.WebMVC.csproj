@@ -200,6 +200,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ParkController.cs" />
+    <Compile Include="Controllers\AttractionTypeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -278,6 +279,11 @@
     <Content Include="Views\Attraction\Edit.cshtml" />
     <Content Include="Views\Attraction\Delete.cshtml" />
     <Content Include="Views\Attraction\Create.cshtml" />
+    <Content Include="Views\AttractionType\Index.cshtml" />
+    <Content Include="Views\AttractionType\Create.cshtml" />
+    <Content Include="Views\AttractionType\Details.cshtml" />
+    <Content Include="Views\AttractionType\Edit.cshtml" />
+    <Content Include="Views\AttractionType\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

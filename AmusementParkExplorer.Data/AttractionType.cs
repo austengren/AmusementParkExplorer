@@ -7,27 +7,16 @@ using System.Threading.Tasks;
 
 namespace AmusementParkExplorer.Data
 {
-    public class FoodDrink
+    public class AttractionType
     {
         [Key]
-        public int FoodDrinkID { get; set; }
-
-        [Required]
-        public int ParkID { get; set; }
-
-        public virtual Park Park { get; set; }
+        public int AttractionTypeID { get; set; }
 
         [Required]
         public Guid OwnerID { get; set; }
 
         [Required]
-        public string FoodDrinkName { get; set; }
-
-        [Required]
-        public string FoodDrinkType { get; set; }
-
-        [Required]
-        public decimal FoodDrinkRating { get; set; }
+        public string AttractionTypeName { get; set; }
 
         [Required]
         public DateTimeOffset CreatedUtc { get; set; }

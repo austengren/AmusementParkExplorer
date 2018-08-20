@@ -26,14 +26,6 @@
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.AttractionType, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.AttractionType, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.AttractionType, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
         @Html.LabelFor(model => model.AttractionRating, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.EditorFor(model => model.AttractionRating, new { htmlAttributes = new { @class = "form-control" } })

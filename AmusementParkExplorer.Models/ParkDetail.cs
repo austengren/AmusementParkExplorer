@@ -18,9 +18,6 @@ namespace AmusementParkExplorer.Models
         public string City { get; set; }
         public string State { get; set; }
 
-        [Display(Name = "Park Rating")]
-        public decimal ParkRating { get; set; }
-
         [Display(Name = "Created")]
         public DateTimeOffset CreatedUtc { get; set; }
 

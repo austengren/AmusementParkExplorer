@@ -8,83 +8,76 @@ using System.Threading.Tasks;
 
 namespace AmusementParkExplorer.Services
 {
-    public class ParkService
+    public class AttractionTypeService
     {
         private readonly Guid _userID;
-
-        public ParkService(Guid userID)
+        
+         public AttractionTypeService(Guid userID)
         {
             _userID = userID;
         }
 
-        public bool CreatePark(ParkCreate model)
+        public bool CreateAttractionType(AttractionTypeCreate model)
         {
             var entity =
-                new Park()
+                new AttractionType()
                 {
                     OwnerID = _userID,
-                    ParkName = model.ParkName,
-                    City = model.City,
-                    State = model.State,
+                    AttractionTypeName = model.AttractionTypeName,
                     CreatedUtc = DateTimeOffset.Now
                 };
 
             using (var ctx = new ApplicationDbContext())
             {
-                ctx.Parks.Add(entity);
+                ctx.AttractionTypes.Add(entity);
                 return ctx.SaveChanges() == 1;
             }
         }
 
-        public bool UpdatePark(ParkEdit model)
+        public bool UpdateAttractionType(AttractionTypeEdit model)
         {
             using (var ctx = new ApplicationDbContext())
             {
                 var entity =
                     ctx
-                        .Parks
-                        .Single(e => e.ParkID == model.ParkID && e.OwnerID == _userID);
+                        .AttractionTypes
+                        .Single(e => e.AttractionTypeID == model.AttractionTypeID && e.OwnerID == _userID);
 
-                entity.ParkName = model.ParkName;
-                entity.City = model.City;
-                entity.State = model.State;
+                entity.AttractionTypeName = model.AttractionTypeName;
                 entity.ModifiedUtc = DateTimeOffset.UtcNow;
 
                 return ctx.SaveChanges() == 1;
             }
         }
 
-        public bool DeletePark(int ParkID)
+        public bool DeleteAttractionType(int AttractionTypeID)
         {
             using (var ctx = new ApplicationDbContext())
             {
                 var entity =
                     ctx
-                        .Parks
-                        .Single(e => e.ParkID == ParkID && e.OwnerID == _userID);
+                        .AttractionTypes
+                        .Single(e => e.AttractionTypeID == AttractionTypeID && e.OwnerID == _userID);
 
-                ctx.Parks.Remove(entity);
+                ctx.AttractionTypes.Remove(entity);
 
                 return ctx.SaveChanges() == 1;
             }
         }
 
-        public IEnumerable<ParkListItem> GetParks()
+        public IEnumerable<AttractionTypeListItem> GetAttractionTypes()
         {
             using (var ctx = new ApplicationDbContext())
             {
                 var query =
                     ctx
-                        .Parks
-                        //.Where(e => e.OwnerID == _userID)
+                        .AttractionTypes
                         .Select(
                             e =>
-                                new ParkListItem
+                                new AttractionTypeListItem
                                 {
-                                    ParkID = e.ParkID,
-                                    ParkName = e.ParkName,
-                                    City = e.City,
-                                    State = e.State,
+                                    AttractionTypeID = e.AttractionTypeID,
+                                    AttractionTypeName = e.AttractionTypeName,
                                     CreatedUtc = e.CreatedUtc
                                 }
                         );
@@ -93,21 +86,19 @@ namespace AmusementParkExplorer.Services
             }
         }
 
-        public ParkDetail GetParkById(int parkId)
+        public AttractionTypeDetail GetAttractionTypeById(int attractionTypeId)
         {
             using (var ctx = new ApplicationDbContext())
             {
                 var entity =
                     ctx
-                        .Parks
-                        .Single(e => e.ParkID == parkId);
+                        .AttractionTypes
+                        .Single(e => e.AttractionTypeID == attractionTypeId);
                 return
-                    new ParkDetail
+                    new AttractionTypeDetail
                     {
-                        ParkID = entity.ParkID,
-                        ParkName = entity.ParkName,
-                        City = entity.City,
-                        State = entity.State,
+                        AttractionTypeID = entity.AttractionTypeID,
+                        AttractionTypeName = entity.AttractionTypeName,
                         CreatedUtc = entity.CreatedUtc,
                         ModifiedUtc = entity.ModifiedUtc
                     };

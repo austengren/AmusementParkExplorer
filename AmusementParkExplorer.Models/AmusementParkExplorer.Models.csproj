@@ -57,11 +57,15 @@
     <Compile Include="AttractionDetail.cs" />
     <Compile Include="AttractionEdit.cs" />
     <Compile Include="AttractionListItem.cs" />
+    <Compile Include="AttractionTypeDetail.cs" />
+    <Compile Include="AttractionTypeEdit.cs" />
     <Compile Include="ParkCreate.cs" />
     <Compile Include="ParkDetail.cs" />
     <Compile Include="ParkEdit.cs" />
     <Compile Include="ParkListItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="AttractionTypeCreate.cs" />
+    <Compile Include="AttractionTypeListItem.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

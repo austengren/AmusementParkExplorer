@@ -1,4 +1,4 @@
-﻿@model AmusementParkExplorer.Models.AttractionDetail
+﻿@model AmusementParkExplorer.Models.AttractionTypeDetail
 
 @{
     ViewBag.Title = "Details";
@@ -7,39 +7,15 @@
 <h2>Details</h2>
 
 <div>
-    <h4>AttractionDetail</h4>
+    <h4>AttractionTypeDetail</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.ParkName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ParkName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.AttractionName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.AttractionName)
-        </dd>
-
         <dt>
             @Html.DisplayNameFor(model => model.AttractionTypeName)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.AttractionTypeName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.AttractionRating)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.AttractionRating)
         </dd>
 
         <dt>
@@ -61,6 +37,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.AttractionID }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.AttractionTypeID }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

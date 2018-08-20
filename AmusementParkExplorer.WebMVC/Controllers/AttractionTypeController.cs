@@ -10,14 +10,14 @@ using System.Web.Mvc;
 namespace AmusementParkExplorer.WebMVC.Controllers
 {
     [Authorize]
-    public class ParkController : Controller
+    public class AttractionTypeController : Controller
     {
-        // GET: Park
+        // GET: AttractionType
         public ActionResult Index()
         {
             var userID = Guid.Parse(User.Identity.GetUserId());
-            var service = new ParkService(userID);
-            var model = service.GetParks();
+            var service = new AttractionTypeService(userID);
+            var model = service.GetAttractionTypes();
 
             return View(model);
         }
@@ -30,67 +30,66 @@ namespace AmusementParkExplorer.WebMVC.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(ParkCreate model)
+        public ActionResult Create(AttractionTypeCreate model)
         {
             if (!ModelState.IsValid) return View(model);
 
-            var service = CreateParkService();
+            var service = CreateAttractionTypeService();
 
-            if (service.CreatePark(model))
+            if (service.CreateAttractionType(model))
             {
-                TempData["SaveResult"] = "Your Park was added.";
+                TempData["SaveResult"] = "Your Attracation Type was created.";
                 return RedirectToAction("Index");
             };
 
-            ModelState.AddModelError("", "Your park could not be added.");
+            ModelState.AddModelError("", "Attraction Type could not be created.");
+
 
             return View(model);
         }
 
         public ActionResult Edit(int id)
         {
-            var service = CreateParkService();
-            var detail = service.GetParkById(id);
+            var service = CreateAttractionTypeService();
+            var detail = service.GetAttractionTypeById(id);
             var model =
-                new ParkEdit
+                new AttractionTypeEdit
                 {
-                    ParkID = detail.ParkID,
-                    ParkName = detail.ParkName,
-                    City = detail.City,
-                    State = detail.State,
+                    AttractionTypeID = detail.AttractionTypeID,
+                    AttractionTypeName = detail.AttractionTypeName,
                 };
             return View(model);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, ParkEdit model)
+        public ActionResult Edit(int id, AttractionTypeEdit model)
         {
             if (!ModelState.IsValid) return View(model);
 
-            if (model.ParkID != id)
+            if (model.AttractionTypeID != id)
             {
                 ModelState.AddModelError("", "Id Mismatch");
                 return View(model);
             }
 
-            var service = CreateParkService();
+            var service = CreateAttractionTypeService();
 
-            if (service.UpdatePark(model))
+            if (service.UpdateAttractionType(model))
             {
-                TempData["SaveResult"] = "Your Park was updated.";
+                TempData["SaveResult"] = "Your Attraction Type was updated.";
                 return RedirectToAction("Index");
             }
 
-            ModelState.AddModelError("", "Your Park could not be updated.");
+            ModelState.AddModelError("", "Your Attraction Type could not be updated.");
             return View(model);
         }
 
         [ActionName("Delete")]
         public ActionResult Delete(int id)
         {
-            var svc = CreateParkService();
-            var model = svc.GetParkById(id);
+            var svc = CreateAttractionTypeService();
+            var model = svc.GetAttractionTypeById(id);
 
             return View(model);
         }
@@ -100,27 +99,27 @@ namespace AmusementParkExplorer.WebMVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeletePost(int id)
         {
-            var service = CreateParkService();
+            var service = CreateAttractionTypeService();
 
-            service.DeletePark(id);
+            service.DeleteAttractionType(id);
 
-            TempData["SaveResult"] = "Your park was deleted";
+            TempData["SaveResult"] = "Your attraction type was deleted";
 
             return RedirectToAction("Index");
         }
 
         public ActionResult Details(int id)
         {
-            var svc = CreateParkService();
-            var model = svc.GetParkById(id);
+            var svc = CreateAttractionTypeService();
+            var model = svc.GetAttractionTypeById(id);
 
             return View(model);
         }
 
-        private ParkService CreateParkService()
+        private AttractionTypeService CreateAttractionTypeService()
         {
             var userID = Guid.Parse(User.Identity.GetUserId());
-            var service = new ParkService(userID);
+            var service = new AttractionTypeService(userID);
             return service;
         }
     }

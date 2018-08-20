@@ -24,9 +24,9 @@ namespace AmusementParkExplorer.Models
 
         [Required]
         [Display(Name = "Attraction Type")]
-        [MinLength(2, ErrorMessage = "Please enter at least 2 characters.")]
-        [MaxLength(100, ErrorMessage = "There are too many characters in this field.")]
-        public string AttractionType { get; set; }
+        public int AttractionTypeID { get; set; }
+        public string AttractionTypeName { get; set; }
+        public virtual AttractionType AttractionType { get; set; }
 
         [Required]
         [Display(Name = "Attraction Rating")]

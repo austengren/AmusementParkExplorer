@@ -53,11 +53,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IAttractionService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AmusementParkExplorer.Data\AmusementParkExplorer.Data.csproj">
+      <Project>{d5f829e7-ec0d-4e32-9628-6f5b97b1e726}</Project>
+      <Name>AmusementParkExplorer.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AmusementParkExplorer.Models\AmusementParkExplorer.Models.csproj">
+      <Project>{188bb4cd-2e5d-4883-9217-ba001184752d}</Project>
+      <Name>AmusementParkExplorer.Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

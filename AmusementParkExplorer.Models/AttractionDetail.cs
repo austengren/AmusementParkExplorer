@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AmusementParkExplorer.Data;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -10,7 +11,9 @@ namespace AmusementParkExplorer.Models
     public class AttractionDetail
     {
         [Display(Name = "Park Name")]
+        public int ParkID { get; set; }
         public string ParkName { get; set; }
+        public virtual Park Park { get; set; }
 
         [Display(Name = "Attraction ID")]
         public int AttractionID { get; set; }
@@ -19,7 +22,9 @@ namespace AmusementParkExplorer.Models
         public string AttractionName { get; set; }
 
         [Display(Name = "Attraction Type")]
-        public string AttractionType { get; set; }
+        public int AttractionTypeID { get; set; }
+        public string AttractionTypeName { get; set; }
+        public virtual AttractionType AttractionType { get; set; }
 
         [Display(Name = "Attraction Rating")]
         public decimal AttractionRating { get; set; }

@@ -16,9 +16,5 @@ namespace AmusementParkExplorer.Models
 
         public string City { get; set; }
         public string State { get; set; }
-
-        [Display(Name = "Park Rating")]
-        [Range(1, 5, ErrorMessage = "Please choose a number between 1 and 5")]
-        public decimal ParkRating { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using AmusementParkExplorer.Data;
+﻿using AmusementParkExplorer.Contracts;
+using AmusementParkExplorer.Data;
 using AmusementParkExplorer.Models;
 using System;
 using System.Collections.Generic;
@@ -9,13 +10,17 @@ using System.Threading.Tasks;
 
 namespace AmusementParkExplorer.Services
 {
-    public class AttractionService
+    public class AttractionService : IAttractionService
     {
         private readonly Guid _userID;
-        
-         public AttractionService(Guid userID)
+        private ParkService _parkService;
+        private AttractionTypeService _attractionTypeService;
+
+        public AttractionService(Guid userID)
         {
             _userID = userID;
+            _parkService = new ParkService(_userID);
+            _attractionTypeService = new AttractionTypeService(_userID);
         }
 
         public bool CreateAttraction(AttractionCreate model)
@@ -26,6 +31,7 @@ namespace AmusementParkExplorer.Services
                     OwnerID = _userID,
                     AttractionName = model.AttractionName,
                     ParkID = model.ParkID,
+                    AttractionTypeID = model.AttractionTypeID,
                     AttractionType = model.AttractionType,
                     AttractionRating = model.AttractionRating,
                     CreatedUtc = DateTimeOffset.Now
@@ -48,7 +54,6 @@ namespace AmusementParkExplorer.Services
                         .Single(e => e.AttractionID == model.AttractionID && e.OwnerID == _userID);
 
                 entity.AttractionName = model.AttractionName;
-                entity.AttractionType = model.AttractionType;
                 entity.AttractionRating = model.AttractionRating;
                 entity.ModifiedUtc = DateTimeOffset.UtcNow;
 
@@ -71,7 +76,7 @@ namespace AmusementParkExplorer.Services
             }
         }
 
-        public IEnumerable<AttractionListItem> GetAttraction()
+        public IEnumerable<AttractionListItem> GetAttractions()
        {
            using (var ctx = new ApplicationDbContext())
            {
@@ -80,13 +85,19 @@ namespace AmusementParkExplorer.Services
                         .Attractions
                         .Where(e => e.OwnerID == _userID)
                         .Include(e => e.ParkID)
+                        .Include(e => e.AttractionTypeID)
                         .Select(
                             e =>
                                new AttractionListItem
                                 {
                                     AttractionID = e.AttractionID,
+                                    ParkID = e.ParkID,
+                                    AttractionTypeID = e.AttractionTypeID,
+                                    ParkName = e.Park.ParkName,
+                                    City = e.Park.City,
+                                    State = e.Park.State,
+                                    AttractionTypeName = e.AttractionType.AttractionTypeName,
                                     AttractionName = e.AttractionName,
-                                    AttractionType = e.AttractionType,
                                     AttractionRating = e.AttractionRating,
                                     CreatedUtc = e.CreatedUtc
                                 }
@@ -108,8 +119,9 @@ namespace AmusementParkExplorer.Services
                     new AttractionDetail
                     {
                         AttractionID = entity.AttractionID,
+                        ParkName = entity.Park.ParkName,
                         AttractionName = entity.AttractionName,
-                        AttractionType = entity.AttractionType,
+                        AttractionTypeName = entity.AttractionType.AttractionTypeName,
                         AttractionRating = entity.AttractionRating,
                         CreatedUtc = entity.CreatedUtc,
                         ModifiedUtc = entity.ModifiedUtc

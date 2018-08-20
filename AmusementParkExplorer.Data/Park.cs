@@ -25,9 +25,6 @@ namespace AmusementParkExplorer.Data
         public string State { get; set; }
 
         [Required]
-        public decimal ParkRating { get; set; }
-
-        [Required]
         public DateTimeOffset CreatedUtc { get; set; }
 
         public DateTimeOffset? ModifiedUtc { get; set; }

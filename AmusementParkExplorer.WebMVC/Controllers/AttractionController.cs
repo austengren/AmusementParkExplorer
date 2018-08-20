@@ -20,8 +20,8 @@ namespace AmusementParkExplorer.WebMVC.Controllers
         {
             var userID = Guid.Parse(User.Identity.GetUserId());
             var service = new AttractionService(userID);
-            var model = service.GetAttraction();
-
+            var model = service.GetAttractions();
+          
             return View(model);
         }
 
@@ -29,6 +29,7 @@ namespace AmusementParkExplorer.WebMVC.Controllers
         public ActionResult Create()
         {
             ViewBag.ParkID = new SelectList(db.Parks, "ParkID", "ParkName");
+            ViewBag.AttractionTypeID = new SelectList(db.AttractionTypes, "AttractionTypeID", "AttractionTypeName");
 
             return View();
         }
@@ -48,6 +49,7 @@ namespace AmusementParkExplorer.WebMVC.Controllers
             };
 
             ViewBag.ParkID = new SelectList(db.Parks, "ParkID", "ParkName");
+            ViewBag.AttractionTypeID = new SelectList(db.AttractionTypes, "AttractionTypeID", "AttractionTypeName");
 
             ModelState.AddModelError("", "Attraction could not be created.");
 
@@ -63,7 +65,6 @@ namespace AmusementParkExplorer.WebMVC.Controllers
                 {
                     AttractionID = detail.AttractionID,
                     AttractionName = detail.AttractionName,
-                    AttractionType = detail.AttractionType,
                     AttractionRating = detail.AttractionRating,
                 };
             return View(model);

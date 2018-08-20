@@ -15,6 +15,8 @@ namespace AmusementParkExplorer.Data
         [Required]
         public int ParkID { get; set; }
 
+        public virtual Park Park { get; set; }
+
         [Required]
         public Guid OwnerID { get; set; }
 
@@ -22,7 +24,9 @@ namespace AmusementParkExplorer.Data
         public string AttractionName { get; set; }
 
         [Required]
-        public string AttractionType { get; set; }
+        public int AttractionTypeID { get; set; }
+
+        public virtual AttractionType AttractionType { get; set; }
 
         [Required]
         public decimal AttractionRating { get; set; }
