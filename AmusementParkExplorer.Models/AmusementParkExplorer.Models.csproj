@@ -53,6 +53,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdminUserCreate.cs" />
     <Compile Include="AttractionCreate.cs" />
     <Compile Include="AttractionDetail.cs" />
     <Compile Include="AttractionEdit.cs" />

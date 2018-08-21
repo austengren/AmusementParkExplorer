@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace AmusementParkExplorer.WebMVC.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     public class ParkController : Controller
     {
         // GET: Park

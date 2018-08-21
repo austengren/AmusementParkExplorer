@@ -22,10 +22,13 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    @if (User.Identity.IsAuthenticated)
+                    @if (Request.IsAuthenticated)
+                    {
+                        <li>@Html.ActionLink("Attraction", "Index", "Attraction")</li>
+                    }
+                    @if (Request.IsAuthenticated && User.IsInRole("Admin"))
                     {
                         <li>@Html.ActionLink("Park", "Index", "Park")</li>
-                        <li>@Html.ActionLink("Attraction", "Index", "Attraction")</li>
                         <li>@Html.ActionLink("Attraction Type", "Index", "AttractionType")</li>
                     }
                     <li>@Html.ActionLink("About", "About", "Home")</li>
