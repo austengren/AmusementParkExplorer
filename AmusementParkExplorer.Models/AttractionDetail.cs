@@ -13,6 +13,11 @@ namespace AmusementParkExplorer.Models
         [Display(Name = "Park Name")]
         public int ParkID { get; set; }
         public string ParkName { get; set; }
+
+        public string City { get; set; }
+
+        public string State { get; set; }
+
         public virtual Park Park { get; set; }
 
         [Display(Name = "Attraction ID")]
@@ -23,6 +28,8 @@ namespace AmusementParkExplorer.Models
 
         [Display(Name = "Attraction Type")]
         public int AttractionTypeID { get; set; }
+
+        [Display(Name = "Attraction Type Name")]
         public string AttractionTypeName { get; set; }
         public virtual AttractionType AttractionType { get; set; }
 

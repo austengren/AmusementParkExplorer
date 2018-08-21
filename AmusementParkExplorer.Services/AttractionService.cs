@@ -120,6 +120,8 @@ namespace AmusementParkExplorer.Services
                     {
                         AttractionID = entity.AttractionID,
                         ParkName = entity.Park.ParkName,
+                        City = entity.Park.City,
+                        State = entity.Park.State,
                         AttractionName = entity.AttractionName,
                         AttractionTypeName = entity.AttractionType.AttractionTypeName,
                         AttractionRating = entity.AttractionRating,

@@ -1,4 +1,5 @@
-﻿using AmusementParkExplorer.Data;
+﻿using AmusementParkExplorer.Contracts;
+using AmusementParkExplorer.Data;
 using AmusementParkExplorer.Models;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace AmusementParkExplorer.Services
 {
-    public class AttractionTypeService
+    public class AttractionTypeService : IAttractionTypeService
     {
         private readonly Guid _userID;
         

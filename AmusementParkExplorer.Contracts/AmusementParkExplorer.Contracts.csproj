@@ -54,6 +54,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IAttractionService.cs" />
+    <Compile Include="IAttractionTypeService.cs" />
+    <Compile Include="IParkService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -14,10 +14,5 @@ namespace AmusementParkExplorer.Contracts
         bool DeleteAttraction(int AttractionID);
         IEnumerable<AttractionListItem> GetAttractions();
         AttractionDetail GetAttractionById(int attractionID);
-
-
-
-
-
     }
 }
