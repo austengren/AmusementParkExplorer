@@ -13,13 +13,31 @@ namespace AmusementParkExplorer.WebMVC.Controllers
     public class AttractionTypeController : Controller
     {
         // GET: AttractionType
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder, string searchString)
         {
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+
+
             var userID = Guid.Parse(User.Identity.GetUserId());
             var service = new AttractionTypeService(userID);
-            var model = service.GetAttractionTypes();
+            var attractionTypes = service.GetAttractionTypes();
 
-            return View(model);
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                attractionTypes = attractionTypes.Where(t => t.AttractionTypeName.ToLower().Contains(searchString.ToLower()));
+            }
+
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    attractionTypes = attractionTypes.OrderByDescending(t => t.AttractionTypeName);
+                    break;
+                default:
+                    attractionTypes = attractionTypes.OrderBy(t => t.AttractionTypeName);
+                    break;
+            }
+
+            return View(attractionTypes.ToList());
         }
 
         // GET

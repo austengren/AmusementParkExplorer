@@ -10,6 +10,14 @@
     @Html.ActionLink("Create New", "Create")
 </p>
 
+@using (Html.BeginForm())
+{
+    <p>
+        Find by name: @Html.TextBox("SearchString")
+        <input type="submit" value="Search" />
+    </p>
+}
+
 @if (TempData.ContainsKey("SaveResult"))
 {
     <div class="alert alert-success fade in" role="alert">
@@ -21,16 +29,18 @@
     </div>
 }
 
+
+
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.ParkName)
+            @Html.ActionLink("Park Name", "Index", new { sortOrder = ViewBag.NameSortParm })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.City)
+            @Html.ActionLink("City", "Index", new { sortOrder = ViewBag.CitySortParm })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.State)
+            @Html.ActionLink("State", "Index", new { sortOrder = ViewBag.StateSortParm })
         </th>
         <th>
             @Html.DisplayNameFor(model => model.CreatedUtc)

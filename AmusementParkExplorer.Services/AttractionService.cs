@@ -53,7 +53,9 @@ namespace AmusementParkExplorer.Services
                         .Attractions
                         .Single(e => e.AttractionID == model.AttractionID && e.OwnerID == _userID);
 
+                entity.ParkID = model.ParkID;
                 entity.AttractionName = model.AttractionName;
+                entity.AttractionTypeID = model.AttractionTypeID;
                 entity.AttractionRating = model.AttractionRating;
                 entity.ModifiedUtc = DateTimeOffset.UtcNow;
 

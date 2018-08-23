@@ -10,6 +10,14 @@
     @Html.ActionLink("Create New", "Create")
 </p>
 
+@using (Html.BeginForm())
+{
+    <p>
+        Find by name: @Html.TextBox("SearchString")
+        <input type="submit" value="Search" />
+    </p>
+}
+
 @if (TempData.ContainsKey("SaveResult"))
 {
     <div class="alert alert-success fade in" role="alert">
@@ -24,22 +32,22 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.ParkName)
+            @Html.ActionLink("Park Name", "Index", new { sortOrder = ViewBag.NameSortParm })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.City)
+            @Html.ActionLink("City", "Index", new { sortOrder = ViewBag.CitySortParm })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.State)
+            @Html.ActionLink("State", "Index", new { sortOrder = ViewBag.StateSortParm })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.AttractionName)
+            @Html.ActionLink("Attraction Name", "Index", new { sortOrder = ViewBag.AttractionNameSortParm })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.AttractionTypeName)
+            @Html.ActionLink("Attraction Type", "Index", new { sortOrder = ViewBag.AttractionTypeNameSortParm })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.AttractionRating)
+            @Html.ActionLink("Attractin Rating", "Index", new { sortOrder = ViewBag.AttractionRatingSortParm })
         </th>
         <th>
             @Html.DisplayNameFor(model => model.CreatedUtc)
@@ -49,34 +57,34 @@
 
     @foreach (var item in Model)
     {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.ParkName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.City)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.State)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AttractionName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AttractionTypeName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AttractionRating)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreatedUtc)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.AttractionID }) |
-            @Html.ActionLink("Details", "Details", new { id = item.AttractionID }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.AttractionID })
-        </td>
-    </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ParkName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.City)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.State)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AttractionName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AttractionTypeName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AttractionRating)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedUtc)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.AttractionID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.AttractionID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.AttractionID })
+            </td>
+        </tr>
     }
 
 </table>

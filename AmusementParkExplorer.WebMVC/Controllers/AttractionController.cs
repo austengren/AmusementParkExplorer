@@ -16,13 +16,57 @@ namespace AmusementParkExplorer.WebMVC.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Attraction
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder, string searchString)
         {
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.CitySortParm = String.IsNullOrEmpty(sortOrder) ? "city_desc" : "";
+            ViewBag.StateSortParm = String.IsNullOrEmpty(sortOrder) ? "state_desc" : "";
+            ViewBag.AttractionNameSortParm = String.IsNullOrEmpty(sortOrder) ? "attractionName_desc" : "";
+            ViewBag.AttractionTypeNameSortParm = String.IsNullOrEmpty(sortOrder) ? "attractionTypeName_desc" : "";
+            ViewBag.AttractionRatingSortParm = String.IsNullOrEmpty(sortOrder) ? "attractionRating_desc" : "";
+
+
+
             var userID = Guid.Parse(User.Identity.GetUserId());
             var service = new AttractionService(userID);
-            var model = service.GetAttractions();
-          
-            return View(model);
+            var attractions = service.GetAttractions();
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                attractions = attractions.Where(a => a.ParkName.ToLower().Contains(searchString.ToLower())
+                                 || a.City.ToLower().Contains(searchString.ToLower())
+                                 || a.State.ToLower().Contains(searchString.ToLower())
+                                 || a.AttractionName.ToLower().Contains(searchString.ToLower())
+                                 || a.AttractionTypeName.ToLower().Contains(searchString.ToLower())
+                                 || a.AttractionRating.ToString().Contains(searchString));
+            }
+
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    attractions = attractions.OrderByDescending(a => a.ParkName);
+                    break;
+                case "city_desc":
+                    attractions = attractions.OrderBy(a => a.City);
+                    break;
+                case "state_desc":
+                    attractions = attractions.OrderBy(a => a.State);
+                    break;
+                case "attractionName_desc":
+                    attractions = attractions.OrderBy(a => a.AttractionName);
+                    break;
+                case "attractionTypeName_desc":
+                    attractions = attractions.OrderBy(a => a.AttractionTypeName);
+                    break;
+                case "attractionRating_desc":
+                    attractions = attractions.OrderBy(a => a.AttractionRating);
+                    break;
+                default:
+                    attractions = attractions.OrderBy(a => a.ParkName);
+                    break;
+            }
+
+            return View(attractions);
         }
 
         // GET
@@ -64,9 +108,15 @@ namespace AmusementParkExplorer.WebMVC.Controllers
                 new AttractionEdit
                 {
                     AttractionID = detail.AttractionID,
+                    ParkID = detail.ParkID,
                     AttractionName = detail.AttractionName,
+                    AttractionTypeID = detail.AttractionTypeID,
                     AttractionRating = detail.AttractionRating,
                 };
+
+            ViewBag.ParkID = new SelectList(db.Parks, "ParkID", "ParkName");
+            ViewBag.AttractionTypeID = new SelectList(db.AttractionTypes, "AttractionTypeID", "AttractionTypeName");
+
             return View(model);
         }
 

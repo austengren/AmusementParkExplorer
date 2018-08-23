@@ -77,7 +77,6 @@ namespace AmusementParkExplorer.Services
                 var query =
                     ctx
                         .Parks
-                        //.Where(e => e.OwnerID == _userID)
                         .Select(
                             e =>
                                 new ParkListItem

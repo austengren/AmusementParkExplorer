@@ -13,13 +13,41 @@ namespace AmusementParkExplorer.WebMVC.Controllers
     public class ParkController : Controller
     {
         // GET: Park
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder, string searchString)
         {
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.CitySortParm = String.IsNullOrEmpty(sortOrder) ? "city_desc" : "";
+            ViewBag.StateSortParm = String.IsNullOrEmpty(sortOrder) ? "state_desc" : "";
+
+
             var userID = Guid.Parse(User.Identity.GetUserId());
             var service = new ParkService(userID);
             var model = service.GetParks();
 
-            return View(model);
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                model = model.Where(p => p.ParkName.ToLower().Contains(searchString.ToLower())
+                                 || p.City.ToLower().Contains(searchString.ToLower())
+                                 || p.State.ToLower().Contains(searchString.ToLower()));
+            }
+
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    model = model.OrderByDescending(p => p.ParkName);
+                    break;
+                case "city_desc":
+                    model = model.OrderBy(p => p.City);
+                    break;
+                case "state_desc":
+                    model = model.OrderBy(p => p.State);
+                    break;
+                default:
+                    model = model.OrderBy(p => p.ParkName);
+                    break;
+            }
+
+            return View(model.ToList());
         }
 
         // GET
