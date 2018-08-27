@@ -1,6 +1,7 @@
 ﻿using AmusementParkExplorer.Models;
 using AmusementParkExplorer.Services;
 using Microsoft.AspNet.Identity;
+using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,20 +14,31 @@ namespace AmusementParkExplorer.WebMVC.Controllers
     public class ParkController : Controller
     {
         // GET: Park
-        public ActionResult Index(string sortOrder, string searchString)
+        public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
+            ViewBag.CurrentSort = sortOrder;
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewBag.CitySortParm = String.IsNullOrEmpty(sortOrder) ? "city_desc" : "";
             ViewBag.StateSortParm = String.IsNullOrEmpty(sortOrder) ? "state_desc" : "";
 
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
 
             var userID = Guid.Parse(User.Identity.GetUserId());
             var service = new ParkService(userID);
-            var model = service.GetParks();
+            var parks = service.GetParks();
 
             if (!String.IsNullOrEmpty(searchString))
             {
-                model = model.Where(p => p.ParkName.ToLower().Contains(searchString.ToLower())
+                parks = parks.Where(p => p.ParkName.ToLower().Contains(searchString.ToLower())
                                  || p.City.ToLower().Contains(searchString.ToLower())
                                  || p.State.ToLower().Contains(searchString.ToLower()));
             }
@@ -34,20 +46,22 @@ namespace AmusementParkExplorer.WebMVC.Controllers
             switch (sortOrder)
             {
                 case "name_desc":
-                    model = model.OrderByDescending(p => p.ParkName);
+                    parks = parks.OrderByDescending(p => p.ParkName);
                     break;
                 case "city_desc":
-                    model = model.OrderBy(p => p.City);
+                    parks = parks.OrderBy(p => p.City);
                     break;
                 case "state_desc":
-                    model = model.OrderBy(p => p.State);
+                    parks = parks.OrderBy(p => p.State);
                     break;
                 default:
-                    model = model.OrderBy(p => p.ParkName);
+                    parks = parks.OrderBy(p => p.ParkName);
                     break;
             }
 
-            return View(model.ToList());
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+            return View(parks.ToPagedList(pageNumber, pageSize));
         }
 
         // GET

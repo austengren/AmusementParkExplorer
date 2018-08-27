@@ -2,6 +2,7 @@
 using AmusementParkExplorer.Models;
 using AmusementParkExplorer.Services;
 using Microsoft.AspNet.Identity;
+using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,8 +17,9 @@ namespace AmusementParkExplorer.WebMVC.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Attraction
-        public ActionResult Index(string sortOrder, string searchString)
+        public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
+            ViewBag.CurrentSort = sortOrder;
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewBag.CitySortParm = String.IsNullOrEmpty(sortOrder) ? "city_desc" : "";
             ViewBag.StateSortParm = String.IsNullOrEmpty(sortOrder) ? "state_desc" : "";
@@ -25,7 +27,16 @@ namespace AmusementParkExplorer.WebMVC.Controllers
             ViewBag.AttractionTypeNameSortParm = String.IsNullOrEmpty(sortOrder) ? "attractionTypeName_desc" : "";
             ViewBag.AttractionRatingSortParm = String.IsNullOrEmpty(sortOrder) ? "attractionRating_desc" : "";
 
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
 
+            ViewBag.CurrentFilter = searchString;
 
             var userID = Guid.Parse(User.Identity.GetUserId());
             var service = new AttractionService(userID);
@@ -65,8 +76,9 @@ namespace AmusementParkExplorer.WebMVC.Controllers
                     attractions = attractions.OrderBy(a => a.ParkName);
                     break;
             }
-
-            return View(attractions);
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+            return View(attractions.ToPagedList(pageNumber, pageSize));
         }
 
         // GET

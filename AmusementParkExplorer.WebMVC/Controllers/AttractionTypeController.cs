@@ -1,6 +1,7 @@
 ﻿using AmusementParkExplorer.Models;
 using AmusementParkExplorer.Services;
 using Microsoft.AspNet.Identity;
+using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,10 +14,21 @@ namespace AmusementParkExplorer.WebMVC.Controllers
     public class AttractionTypeController : Controller
     {
         // GET: AttractionType
-        public ActionResult Index(string sortOrder, string searchString)
+        public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
+            ViewBag.CurrentSort = sortOrder;
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
 
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
 
             var userID = Guid.Parse(User.Identity.GetUserId());
             var service = new AttractionTypeService(userID);
@@ -37,7 +49,9 @@ namespace AmusementParkExplorer.WebMVC.Controllers
                     break;
             }
 
-            return View(attractionTypes.ToList());
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+            return View(attractionTypes.ToPagedList(pageNumber, pageSize));
         }
 
         // GET

@@ -1,7 +1,9 @@
-﻿@model IEnumerable<AmusementParkExplorer.Models.ParkListItem>
+﻿@model PagedList.IPagedList<AmusementParkExplorer.Models.ParkListItem>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Parks";
 }
 
 <h2>View Amusement Parks</h2>
@@ -40,13 +42,13 @@
 <table class="table table-striped table-hover ">
     <tr>
         <th>
-            @Html.ActionLink("Park Name", "Index", new { sortOrder = ViewBag.NameSortParm })
+            @Html.ActionLink("Park Name", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th>
-            @Html.ActionLink("City", "Index", new { sortOrder = ViewBag.CitySortParm })
+            @Html.ActionLink("City", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th>
-            @Html.ActionLink("State", "Index", new { sortOrder = ViewBag.StateSortParm })
+            @Html.ActionLink("State", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th></th>
     </tr>
@@ -72,3 +74,9 @@
     }
 
 </table>
+
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
