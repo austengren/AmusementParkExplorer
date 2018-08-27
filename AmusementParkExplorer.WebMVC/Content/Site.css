@@ -22,3 +22,54 @@ select,
 textarea {
     max-width: 280px;
 }
+
+#SearchBox {
+    float: right
+}
+
+.home {
+    padding-top: 125px;
+    padding-bottom: 30px;
+    color: white;
+}
+
+.hometitle {
+    font-size: 72px;
+}
+
+.lead {
+    font-size: 30px;
+}
+
+.jumbotron {
+    background-image: url('../../Content/img/amusement-park.jpg');
+    background-size: cover;
+    padding-top: 125px;
+    padding-bottom: 30px;
+    color: white;
+    height: 75vh;
+    width: 100%;
+    margin: auto;
+}
+
+.container .jumbotron,
+.container-fluid .jumbotron {
+    padding-right: 15px;
+    padding-left: 15px;
+    border-radius: 0px;
+}
+
+.navbar-default {
+    background-color: #fff;
+    border-color: #337ab7;
+}
+
+    .navbar-default .navbar-brand {
+        color: #337ab7;
+    }
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
