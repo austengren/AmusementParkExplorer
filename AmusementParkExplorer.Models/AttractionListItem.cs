@@ -12,9 +12,8 @@ namespace AmusementParkExplorer.Models
         [Display(Name ="Attraction ID")]
         public int AttractionID { get; set; }
 
-        public int ParkID { get; set; }
-
         [Display(Name = "Park Name")]
+        public int ParkID { get; set; }
         public string ParkName { get; set; }
 
         public string City { get; set; }
@@ -29,7 +28,7 @@ namespace AmusementParkExplorer.Models
         [Display(Name = "Attraction Type")]
         public string AttractionTypeName { get; set; }
 
-        [Display(Name = "Attraction Rating")]
+        [Display(Name = "Rating")]
         public decimal AttractionRating { get; set; }
 
         [Display(Name = "Created")]

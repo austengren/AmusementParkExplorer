@@ -21,13 +21,14 @@ namespace AmusementParkExplorer.Models
         [Display(Name = "Attraction Name")]
         public string AttractionName { get; set; }
 
+        public int AttractionTypeID { get; set; }
+
         [Required]
         [Display(Name = "Attraction Type")]
-        public int AttractionTypeID { get; set; }
         public string AttractionTypeName { get; set; }
         public virtual AttractionType AttractionType { get; set; }
 
-        [Display(Name = "Attraction Rating")]
+        [Display(Name = "Rating")]
         [Range(1, 5, ErrorMessage = "Please choose a number between 1 and 5")]
         public decimal AttractionRating { get; set; }
     }

@@ -12,7 +12,7 @@ namespace AmusementParkExplorer.Models
         [Display(Name = "Attraction Type ID")]
         public int AttractionTypeID { get; set; }
 
-        [Display(Name = "Attraction Type Name")]
+        [Display(Name = "Attraction Type")]
         public string AttractionTypeName { get; set; }
 
         [Display(Name = "Created")]

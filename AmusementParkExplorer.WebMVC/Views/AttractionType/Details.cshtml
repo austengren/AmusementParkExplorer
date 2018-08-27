@@ -4,38 +4,43 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Attraction Type Details</h2>
+<div class="row">
+    <div class="col-md-offset-4 col-md-8">
 
-<div>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.AttractionTypeName)
-        </dt>
+        <h2>Attraction Type Details</h2>
 
-        <dd>
-            @Html.DisplayFor(model => model.AttractionTypeName)
-        </dd>
+        <div>
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.AttractionTypeName)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.CreatedUtc)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.AttractionTypeName)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.CreatedUtc)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.CreatedUtc)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ModifiedUtc)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.CreatedUtc)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.ModifiedUtc)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.ModifiedUtc)
+                </dt>
 
-    </dl>
+                <dd>
+                    @Html.DisplayFor(model => model.ModifiedUtc)
+                </dd>
+
+            </dl>
+        </div>
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.AttractionTypeID }) |
+            @Html.ActionLink("Back to List", "Index")
+        </p>
+
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.AttractionTypeID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

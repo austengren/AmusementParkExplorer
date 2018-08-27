@@ -13,7 +13,7 @@
 
 <div class="row">
     <div class="col-md-6">
-        @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-info btn-sm" })
+        @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-primary btn-sm" })
     </div>
     <div class="col-md-6">
         <div id="SearchBox">
@@ -21,24 +21,12 @@
             {
                 <p>
                     @Html.TextBox("SearchString")
-                    <input class="btn btn-info btn-sm" type="submit" value="Search" />
+                    <input class="btn btn-primary btn-sm" type="submit" value="Search" />
                 </p>
             }
         </div>
     </div>
 </div>
-
-@*<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-
-@using (Html.BeginForm())
-{
-    <p>
-        @Html.TextBox("SearchString")
-        <input type="submit" value="Search" />
-    </p>
-}*@
 
 @if (TempData.ContainsKey("SaveResult"))
 {
@@ -56,9 +44,6 @@
         <th>
             @Html.ActionLink("Attraction Type", "Index", new { sortOrder = ViewBag.NameSortParm })
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CreatedUtc)
-        </th>
         <th></th>
     </tr>
 
@@ -67,9 +52,6 @@
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.AttractionTypeName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreatedUtc)
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.AttractionTypeID }) |

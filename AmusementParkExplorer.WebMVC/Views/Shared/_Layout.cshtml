@@ -7,7 +7,19 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
+<style>
+    .navbar-default{
+        background-color: #fff;
+        border-color: #337ab7;
+    }
+    .navbar-default .navbar-brand {
+        color: #337ab7;
+    }
+
+</style>
+
 </head>
+
 <body>
     <div class="navbar navbar-default navbar-fixed-top">
         <div class="container">
@@ -43,11 +55,15 @@
         <hr />
         <footer>
             <center>
-            <p>&copy; @DateTime.Now.Year - Amusement Park Explorer</p>
+                <a href="https://www.facebook.com/"><img src="~/Content/img/facebook.png" alt="Facebook"/></a>
+                <a href="https://twitter.com/"><img src="~/Content/img/twitter.png" alt="Facebook" /></a>
+                <a href="https://www.instagram.com/"><img src="~/Content/img/instagram.png" alt="Facebook" /></a>
+                <p></p>
+                <p>&copy; @DateTime.Now.Year Amusement Park Explorer</p>
+                <p>Version 1.0</p>
             </center>
         </footer>
     </div>
-
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
