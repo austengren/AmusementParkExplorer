@@ -76,7 +76,7 @@ namespace AmusementParkExplorer.WebMVC.Controllers
                     attractions = attractions.OrderBy(a => a.ParkName);
                     break;
             }
-            int pageSize = 10;
+            int pageSize = 8;
             int pageNumber = (page ?? 1);
             return View(attractions.ToPagedList(pageNumber, pageSize));
         }
