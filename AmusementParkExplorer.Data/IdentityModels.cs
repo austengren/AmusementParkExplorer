@@ -36,7 +36,6 @@ namespace AmusementParkExplorer.Data
         public DbSet<Attraction> Attractions { get; set; }
         public DbSet<AttractionType> AttractionTypes { get; set; }
 
-
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder

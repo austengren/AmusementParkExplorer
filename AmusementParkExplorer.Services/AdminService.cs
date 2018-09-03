@@ -55,7 +55,6 @@ namespace AmusementParkExplorer.Services
                 {
                     throw;
                 }
-
             }
         }
     }

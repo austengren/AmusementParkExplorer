@@ -32,6 +32,5 @@ namespace AmusementParkExplorer.Models
         [Display(Name = "Rating")]
         [Range(1, 5, ErrorMessage = "Please choose a number between 1 and 5")]
         public decimal AttractionRating { get; set; }
-
     }
 }
